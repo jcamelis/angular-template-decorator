@@ -1,0 +1,22 @@
+{
+  "name": "angular-template-decorator",
+  "homepage": "https://github.com/jcamelis/angular-template-decorator",
+  "authors": [
+    "Javier Camelis <jcamelis@gmail.com>"
+  ],
+  "description": "Gives the ability to decorate an angular template.",
+  "main": "template-decorator.js",
+  "keywords": [
+    "angularjs",
+    "template",
+    "ng-template"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
