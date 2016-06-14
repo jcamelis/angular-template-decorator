@@ -3,6 +3,8 @@ angular.module('templateDecorator', [])
     .config(['$provide', 'templateDecoratorProvider', function($provide, templateDecoratorProvider) {
 
         $provide.decorator('$templateRequest', ['$delegate', function $templateCacheDecorator($originalTemplateRequest) {
+
+            var TEMPLATE_TOKEN = '{{template}}';
             /**
              * @name $templateRequestDecorator
              *
@@ -15,13 +17,24 @@ angular.module('templateDecorator', [])
 
                 if (templateDecoratorProvider.get(templateUrl)) {
 
+
                     return $originalTemplateRequest(templateUrl, ignoreRequestError)
                         .then(function (template) {
 
                             return $templateRequestDecorator(templateDecoratorProvider.get(templateUrl), ignoreRequestError)
                                 .then(function (decoratorTemplate) {
+                                    decoratorTemplate = decoratorTemplate || TEMPLATE_TOKEN;
 
-                                    return (decoratorTemplate || '').replace('{{template}}', template);
+                                    decoratorTemplate = '<!-- template-decorator: ' + templateUrl + ' => ' + templateDecoratorProvider.get(templateUrl) + ' -->' + decoratorTemplate;
+                                    decoratorTemplate += '<!-- // END template-decorator: ' + templateUrl + ' => ' + templateDecoratorProvider.get(templateUrl) + ' -->';
+
+                                    var comments = '<!-- template-decorator: Original Template ' + templateUrl + ' -->';
+                                        comments += TEMPLATE_TOKEN;
+                                        comments += '<!-- // END template-decorator: Original Template ' + templateUrl + ' -->';
+
+                                    return decoratorTemplate
+                                        .replace(TEMPLATE_TOKEN, comments)
+                                        .replace(TEMPLATE_TOKEN, template);
                                 })
                         });
                 } else {

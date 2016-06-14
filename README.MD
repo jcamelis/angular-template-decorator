@@ -1,4 +1,8 @@
 
+INSTALL
+```shell
+bower install jcamelis/angular-template-decorator --save
+```
 
 Implementation example:
 
@@ -7,18 +11,18 @@ Implementation example:
     <my-directive></my-directive>
 
     <script type="text/ng-template" id="templates/myDecorator.html">
-        <div>
-            <h3>This is A decorator</h3>
+        <div class="my-decorator">
+            <h3 class="my-decorator-title">This is A decorator</h3>
             {{template}}
         </div>
     </script>
 
     <script type="text/ng-template" id="templates/myTemplate.html">
-        <div>
-            <h4>Original Template</h4>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
+        <div class="my-template">
+            <h4 class="my-template-title">Original Template</h4>
+            <ul class="my-template-list">
+                <li class="my-template-list-item">Item 1</li>
+                <li class="my-template-list-item">Item 2</li>
             </ul>
         </div>
     </script>
@@ -37,7 +41,7 @@ angular.module('myModule', ['templateDecorator'])
             restrict: 'E',
             templateUrl: 'templates/myTemplate.html'
         }
-    })
+    });
 ```
 
 ```html
@@ -48,13 +52,13 @@ will output
 
 ```html
     <my-directive>
-        <div>
-            <h3>This is A decorator</h3>
-            <div>
-                <h4>Original Template</h4>
-                <ul>
-                    <li>Item 1</li>
-                    <li>Item 2</li>
+        <div class="my-decorator">
+            <h3 class="my-decorator-title">This is A decorator</h3>
+            <div class="my-template">
+                <h4 class="my-template-title">Original Template</h4>
+                <ul class="my-template-list">
+                    <li class="my-template-list-item">Item 1</li>
+                    <li class="my-template-list-item">Item 2</li>
                 </ul>
             </div>
         </div>
