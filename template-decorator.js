@@ -1,3 +1,7 @@
+(function () {
+'use strict';
+
+
 angular.module('templateDecorator', [])
 
     .config(['$provide', 'templateDecoratorProvider', function($provide, templateDecoratorProvider) {
@@ -83,4 +87,6 @@ angular.module('templateDecorator', [])
                 put: put
             }
         };
-    })
+    });
+
+}());
